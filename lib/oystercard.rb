@@ -7,8 +7,18 @@ class Oystercard
   end
 
   def top_up(amount)
-    raise "Top-up aborted. Would exceed #{MAXIMUM_LIMIT} limit." if (@balance + amount) > MAXIMUM_LIMIT
+    raise "Top-up aborted. Would exceed #{MAXIMUM_LIMIT} limit." if over_limit?(amount)
 
     @balance += amount
+  end
+
+  def deduct(amount)
+    @balance -= amount
+  end
+
+  private
+  def over_limit?(amount)
+    return false unless (@balance + amount) > MAXIMUM_LIMIT
+    true
   end
 end
