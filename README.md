@@ -75,14 +75,28 @@ In order to pay for my journey
 As a customer
 I need to have the minimum amount for a single journey
 
+```ruby
 card = Oystercard.new
 card.touch_in
 
 => Expect an error of 'Insufficient funds'
-
+```
+TODO: Step 10
 In order to pay for my journey
 As a customer
 I need to pay for my journey when it's complete
+
+_assume that a journey costs £1:_
+
+```ruby
+card = Oystercard.new
+card.top_up(90)
+card.touch_in
+card.touch_out
+card.balance
+=> 89
+
+```
 
 In order to pay for my journey
 As a customer
