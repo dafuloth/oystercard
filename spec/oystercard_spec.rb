@@ -9,7 +9,6 @@ describe Oystercard do
   it 'When top up the ammount is added to the balance' do
     card = Oystercard.new
     current_balance = card.balance
-    card.top_up(100)
-    expect(card.balance).to eq(current_balance + 100)
+    expect{card.top_up(100)}.to change{card.balance}.by 100
   end
 end
