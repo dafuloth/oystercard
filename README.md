@@ -52,6 +52,25 @@ In order to get through the barriers
 As a customer
 I need to touch in and out
 
+```shell
+card = Oystercard.new
+card.top_up(50)
+
+card.in_journey?
+=> false
+
+card.touch_in
+
+card.in_journey?
+=> true
+
+card.touch_out
+
+card.in_journey?
+=> false
+
+```
+
 In order to pay for my journey
 As a customer
 I need to have the minimum amount for a single journey
