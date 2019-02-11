@@ -75,6 +75,11 @@ In order to pay for my journey
 As a customer
 I need to have the minimum amount for a single journey
 
+card = Oystercard.new
+card.touch_in
+
+=> Expect an error of 'Insufficient funds'
+
 In order to pay for my journey
 As a customer
 I need to pay for my journey when it's complete
