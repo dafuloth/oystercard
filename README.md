@@ -6,41 +6,53 @@ From: https://github.com/makersacademy/course/tree/master/oystercard
 Diode: https://diode.makersacademy.com/students/soph-g/projects/3276
 
 
-### 4. Adding a balance
+## Feature Tests
 
-```
+### Checking a new card is initialised with a balance of 0:
+
 In order to use public transport  
 As a customer  
 I want money on my card  
-```
-Plan for checking a new card is initialised with a balance of 0:
 
-```
+``` ruby
 card = Oystercard.new
 card.balance == 0
+
 ```
 
-In order to keep using public transport
-As a customer
-I want to add money to my card
+### Topping up
 
+In order to keep using public transport  
+As a customer  
+I want to add money to my card  
+
+```ruby
 card = Oystercard.new
 card.top_up(90)
 card.balance
 
-In order to protect my money
-As a customer
-I don't want to put too much money on my card
+```
 
+### Card has a balance limit 
+
+In order to protect my money  
+As a customer  
+I don't want to put too much money on my card  
+
+```ruby
 card = Oystercard.new
 card.top_up(900)
 
 => Expect raise error 'Over limit'
 
-In order to pay for my journey
-As a customer
-I need my fare deducted from my card
+```
 
+### Deduct a fare amount from card to pay for a journey
+In order to pay for my journey  
+As a customer  
+I need my fare deducted from my card  
+
+```ruby
 card = Oystercard.new
 card.top_up(90)
 card.deduct(40)
@@ -48,11 +60,14 @@ card.balance
 
 => Expect to see balance of 50
 
-In order to get through the barriers
-As a customer
-I need to touch in and out
+```
 
-```shell
+### Touch-in and touch-out with the card to get through barriers
+In order to get through the barriers  
+As a customer  
+I need to touch in and out  
+
+```ruby 
 card = Oystercard.new
 card.top_up(50)
 
@@ -71,9 +86,10 @@ card.in_journey?
 
 ```
 
-In order to pay for my journey
-As a customer
-I need to have the minimum amount for a single journey
+### Card should have a balance to be able to make a journey
+In order to pay for my journey  
+As a customer  
+I need to have the minimum amount for a single journey  
 
 ```ruby
 card = Oystercard.new
@@ -81,6 +97,8 @@ card.touch_in
 
 => Expect an error of 'Insufficient funds'
 ```
+
+
 TODO: Step 10
 In order to pay for my journey
 As a customer
