@@ -164,7 +164,7 @@ As a customer
 I want to know what zone a station is in  
 
 ```ruby
-station = Station("Aldgate", 1)
+station = Station.new("Aldgate", 1)
 
 station.name
 => "Aldgate"
