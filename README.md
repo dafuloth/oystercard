@@ -124,7 +124,7 @@ In order to pay for my journey
 As a customer  
 I need to know where I've travelled from  
 
-_for the example, let's say starting station is "Aldgate"
+_for the example, let's say starting station is "Aldgate"_
 
 ```ruby
 card = Oystercard.new
@@ -138,15 +138,45 @@ card.entry_station
 ```
 
 
+### Can see journey history
+
+In order to know where I have been  
+As a customer  
+I want to see to all my previous trips  
+
+```ruby
+card = Oystercard.new
+card.top_up(90)
+
+card.touch_in("Aldgate")
+card.touch_out("Westminster")
+
+card.history
+=> [{:entry_station=>"Aldgate", :exit_station=>"Westminster"}]
+
+```
 
 
-In order to know where I have been
-As a customer
-I want to see to all my previous trips
+### Can see what zone a station is in
 
-In order to know how far I have travelled
-As a customer
-I want to know what zone a station is in
+In order to know how far I have travelled  
+As a customer  
+I want to know what zone a station is in  
+
+```ruby
+station = Station("Aldgate", 1)
+
+station.name
+=> "Aldgate"
+
+station.zone
+=> 1
+
+```
+
+
+
+
 
 In order to be charged correctly
 As a customer
