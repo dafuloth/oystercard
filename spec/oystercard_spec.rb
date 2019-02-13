@@ -35,6 +35,8 @@ describe Oystercard do
   end
 
   describe 'in use:' do
+    let (:station) {double}
+
     it 'the Oystercard is not in use' do
       expect(subject.in_journey?).to eq false
     end
@@ -63,6 +65,13 @@ describe Oystercard do
 
     it 'Raises an error if touched in with a balance less than the minimum' do
       expect { subject.touch_in }.to raise_error('Insufficient Funds Available')
+    end
+
+    it 'records the entry station' do
+      card = Oystercard.new
+      card.top_up(Oystercard::MAXIMUM_LIMIT)
+      card.touch_in(station)
+      expect(card.entry_station).to eq station
     end
   end
 end

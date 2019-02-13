@@ -118,10 +118,27 @@ card.balance
 # Note that the code currently allows touch_out without first touch_in, may need to revise previous test
 
 ```
+### Starting station is recorded
 
-In order to pay for my journey
-As a customer
-I need to know where I've travelled from
+In order to pay for my journey  
+As a customer  
+I need to know where I've travelled from  
+
+_for the example, let's say starting station is "Aldgate"
+
+```ruby
+card = Oystercard.new
+card.top_up(90)
+
+card.touch_in("Aldgate")
+card.entry_station
+
+=> "Aldgate"
+
+```
+
+
+
 
 In order to know where I have been
 As a customer

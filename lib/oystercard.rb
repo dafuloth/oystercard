@@ -1,5 +1,5 @@
 class Oystercard
-  attr_reader :balance, :in_use
+  attr_reader :balance, :in_use, :entry_station
   MAXIMUM_LIMIT = 90
   MINIMUM_LIMIT = 1
 
@@ -24,14 +24,16 @@ class Oystercard
     true
   end
 
-  def touch_in
+  def touch_in(station = nil)
     raise "Insufficient Funds Available" if under_limit?
     @in_use = true
+    @entry_station = station
   end
 
   def touch_out
     @in_use = false
     deduct(MINIMUM_LIMIT)
+    @entry_station = nil
   end
 
   private
