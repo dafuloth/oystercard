@@ -36,6 +36,7 @@ describe Oystercard do
 
   describe 'in use:' do
     let (:station) {double}
+    let (:station2) {double}
 
     it 'the Oystercard is not in use' do
       expect(subject.in_journey?).to eq false
@@ -72,6 +73,23 @@ describe Oystercard do
       card.top_up(Oystercard::MAXIMUM_LIMIT)
       card.touch_in(station)
       expect(card.entry_station).to eq station
+    end
+
+    it "records the exit station when touch out" do
+      card = Oystercard.new()
+      card.top_up(Oystercard::MAXIMUM_LIMIT)
+      card.touch_in(station)
+      card.touch_out(station2)
+      expect(card.exit_station).to be station2
+    end
+
+    it "Records the journey" do
+      card = Oystercard.new()
+      card.top_up(50)
+      card.touch_in(station)
+      card.touch_out(station2)
+      journey = {:entry_station => station , :exit_station => station2}
+      expect(card.history).to include journey
     end
   end
 end
