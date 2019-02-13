@@ -99,7 +99,8 @@ card.touch_in
 ```
 
 
-TODO: Step 10
+### When journey is complete, balance is reduced by the fare amount
+
 In order to pay for my journey
 As a customer
 I need to pay for my journey when it's complete
@@ -109,10 +110,12 @@ _assume that a journey costs £1:_
 ```ruby
 card = Oystercard.new
 card.top_up(90)
-card.touch_in
+# card.touch_in
 card.touch_out
 card.balance
 => 89
+
+# Note that the code currently allows touch_out without first touch_in, may need to revise previous test
 
 ```
 
