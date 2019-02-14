@@ -4,6 +4,7 @@ class Oystercard
   MINIMUM_LIMIT = 1
 
   def initialize
+    
     @balance = 0
     @in_use = false
     @history = []
@@ -27,6 +28,9 @@ class Oystercard
 
   def touch_in(station = nil)
     raise "Insufficient Funds Available" if under_limit?
+
+    deduct(6) if exit_station.nil? && @in_use
+
     @in_use = true
     @entry_station = station
   end

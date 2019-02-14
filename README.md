@@ -175,12 +175,51 @@ station.zone
 ```
 
 
+### Penalty charge deducted if not touched in, or not touched out
+
+_In order to be charged correctly  
+As a customer  
+I need a penalty charge deducted if I fail to touch in or out_
+
+User touches in but doesn't touch out:
+
+```ruby
+
+card = Oystercard.new
+card.top_up(90)
+aldgate = Station.new('Aldgate', 1)
+
+card.touch_in(aldgate)
+
+# User does not touch out
+
+card.touch_in(aldgate)
+
+card.balance
+=> 84
+
+```
+
+User didn't touch in:
+
+```ruby
+
+card = Oystercard.new
+card.top_up(90)
+aldgate = Station.new('Aldgate', 1)
+
+card.touch_out(aldgate)
+
+# User does not touch out
+
+card.touch_in(aldgate)
+
+card.balance
+=> 84
+
+```
 
 
-
-In order to be charged correctly
-As a customer
-I need a penalty charge deducted if I fail to touch in or out
 
 In order to be charged the correct amount
 As a customer

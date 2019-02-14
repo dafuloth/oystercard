@@ -91,5 +91,18 @@ describe Oystercard do
       journey = {:entry_station => station , :exit_station => station2}
       expect(card.history).to include journey
     end
+
+    it "is touched but then not touched out. Penalty is applied" do      
+      card = Oystercard.new
+      card.top_up(90)
+      aldgate = Station.new('Aldgate', 1)
+
+      card.touch_in(aldgate)
+
+      # User does not touch out
+      card.touch_in(aldgate)
+
+      expect(card.balance).to eq 84
+    end
   end
 end
