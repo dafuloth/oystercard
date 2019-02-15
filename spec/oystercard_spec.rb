@@ -43,72 +43,10 @@ describe Oystercard do
 
   describe 'in use:' do
 
-    it 'the Oystercard is not in use' do
-      expect(card.in_journey?).to eq false
-    end
-
-    xit 'is touched in' do
-      card.top_up(Oystercard::MAXIMUM_LIMIT)
-      expect { card.touch_in }.to change { card.in_use }.from(false).to(true)
-    end
-
-    xit 'is touched in and shows as in use' do
-      card.top_up(Oystercard::MAXIMUM_LIMIT)
-      card.touch_in
-      expect(card.in_journey?).to eq true
-    end
-
-    xit 'is touched out' do
-      card.top_up(Oystercard::MAXIMUM_LIMIT)
-      card.touch_in
-      expect { card.touch_out }.to change { card.in_use }.from(true).to(false)
-    end
-
-    xit 'is touched out and no longer shows as in use' do
-      card.touch_out
-      expect(card.in_journey?).to eq false
-    end
-
     it 'Raises an error if touched in with a balance less than the minimum' do
       expect { card.touch_in }.to raise_error('Insufficient Funds Available')
     end
-
-    xit 'records the entry station' do
-      
-      card.top_up(Oystercard::MAXIMUM_LIMIT)
-      card.touch_in(entry_station)
-      expect(card.entry_station).to eq entry_station
-    end
-
-    xit "records the exit station when touch out" do
-      ()
-      card.top_up(Oystercard::MAXIMUM_LIMIT)
-      card.touch_in(entry_station)
-      card.touch_out(exit_station)
-      expect(card.exit_station).to be exit_station
-    end
-
-    xit "Records the journey" do
-      ()
-      card.top_up(50)
-      card.touch_in(entry_station)
-      card.touch_out(exit_station)
-      journey = {:entry_station => entry_station , :exit_station => exit_station}
-      expect(card.history).to include journey
-    end
-
-    xit "is touched but then not touched out. Penalty is applied" do      
-      
-      card.top_up(90)
-      aldgate = Station.new('Aldgate', 1)
-
-      card.touch_in(aldgate)
-
-      # User does not touch out
-      card.touch_in(aldgate)
-
-      expect(card.balance).to eq 84
-    end
+    
   end
 
   describe 'uses Journey object' do

@@ -20,11 +20,6 @@ class Oystercard
     @balance -= amount
   end
 
-  def in_journey?
-    return false unless @in_use
-
-    true
-  end
 
   def touch_in(station = nil)
     raise "Insufficient Funds Available" if under_limit?
